@@ -11,7 +11,7 @@ import (
 
 // CheckStdin return true when Stdin is connected to a pipe,
 // false otherwise
-func CheckStdin() bool, err {
+func CheckStdin() (bool, error) {
 	fi, err := os.Stdin.Stat()
 	if err != nil {
 		return false, err
@@ -24,7 +24,7 @@ func CheckStdin() bool, err {
 
 // Read reads up to size bytes from stdin and
 // returns its input as a string
-func Read(size int) string, err {
+func Read(size int) (string, error) {
 	buf := make([]byte, size)
 	num, err := os.Stdin.Read(buf)
 	if err != nil && err != io.EOF {
